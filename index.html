@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ZeroNotes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <div>
+        <h1>ZeroNotes</h1>
+        <p class="subtitle">journal • deadlines</p>
+      </div>
+      <div class="today">
+        <span>Today</span>
+        <span id="today-date"></span>
+      </div>
+    </header>
+
+    <main class="layout">
+      <!-- Journal -->
+      <section class="panel" id="journal-panel">
+        <h2>Journal</h2>
+        <form id="journal-form">
+          <input
+            type="text"
+            id="journal-title"
+            placeholder="Title (optional)"
+            autocomplete="off"
+          />
+          <textarea
+            id="journal-content"
+            rows="5"
+            placeholder="What did you do? What’s on your mind?"
+          ></textarea>
+          <button type="submit">Save Entry</button>
+        </form>
+
+        <div class="journal-list-wrapper">
+          <h3>Previous entries</h3>
+          <ul id="journal-list"></ul>
+        </div>
+      </section>
+
+      <!-- Planner / Calendar -->
+      <section class="panel" id="planner-panel">
+        <h2>Deadlines & Tasks</h2>
+
+        <div class="calendar">
+          <div class="calendar-header">
+            <button id="prev-month" aria-label="Previous month">&lt;</button>
+            <div id="month-label"></div>
+            <button id="next-month" aria-label="Next month">&gt;</button>
+          </div>
+          <div class="calendar-grid" id="calendar-grid">
+            <!-- Weekdays + days injected by JS -->
+          </div>
+        </div>
+
+        <div class="tasks">
+          <div class="tasks-header">
+            <h3>Tasks for <span id="selected-date-label"></span></h3>
+          </div>
+
+          <form id="task-form">
+            <input
+              type="text"
+              id="task-input"
+              placeholder="Add a task / deadline"
+              autocomplete="off"
+            />
+            <button type="submit">Add</button>
+          </form>
+
+          <ul id="task-list"></ul>
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

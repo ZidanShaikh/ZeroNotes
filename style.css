@@ -1,0 +1,449 @@
+:root {
+  --bg: #050510;
+  --bg-alt: #0b0b18;
+  --accent: #a855f7;
+  --accent-soft: rgba(168, 85, 247, 0.2);
+  --accent-strong: rgba(168, 85, 247, 0.4);
+  --text: #f9fafb;
+  --text-muted: #9ca3af;
+  --border: #1f2933;
+  --danger: #f87171;
+  --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.5);
+  --radius-lg: 18px;
+  --radius-sm: 10px;
+  --transition-fast: 0.15s ease-out;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: radial-gradient(circle at top, #111827, #020617 55%);
+  color: var(--text);
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.app {
+  width: 100%;
+  max-width: 1200px;
+  padding: 16px;
+}
+
+/* Header */
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(120deg, #020617, #020617, #111827);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  box-shadow: var(--shadow-soft);
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  letter-spacing: 0.03em;
+}
+
+.subtitle {
+  margin: 4px 0 0;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.today {
+  text-align: right;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+#today-date {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+/* Layout */
+
+.layout {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 16px;
+}
+
+.panel {
+  background: var(--bg-alt);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px 18px;
+  border: 1px solid rgba(31, 41, 55, 0.8);
+  box-shadow: var(--shadow-soft);
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+}
+
+.panel h2 {
+  margin: 0 0 10px;
+  font-size: 1.25rem;
+}
+
+/* Journal */
+
+#journal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+#journal-form input,
+#journal-form textarea {
+  background: #020617;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(55, 65, 81, 0.9);
+  padding: 8px 10px;
+  color: var(--text);
+  font-size: 0.95rem;
+  resize: vertical;
+}
+
+#journal-form input:focus,
+#journal-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent-soft);
+}
+
+#journal-form button {
+  align-self: flex-end;
+  padding: 7px 16px;
+  border-radius: 999px;
+  border: none;
+  background: var(--accent);
+  color: #f9fafb;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  transition: transform var(--transition-fast),
+    box-shadow var(--transition-fast), background var(--transition-fast);
+}
+
+#journal-form button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(168, 85, 247, 0.4);
+  background: #c084fc;
+}
+
+#journal-form button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+.journal-list-wrapper {
+  border-top: 1px solid rgba(31, 41, 55, 0.9);
+  padding-top: 10px;
+  margin-top: 6px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.journal-list-wrapper h3 {
+  margin: 0 0 8px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+#journal-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.journal-entry {
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  border-radius: var(--radius-sm);
+  background: #020617;
+  border: 1px solid rgba(31, 41, 55, 0.9);
+  transition: background var(--transition-fast), border var(--transition-fast);
+}
+
+.journal-entry:hover {
+  background: rgba(15, 23, 42, 0.9);
+}
+
+.journal-entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+}
+
+.journal-entry-title {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.journal-entry-meta {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.journal-entry-content {
+  margin-top: 3px;
+  font-size: 0.9rem;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.journal-entry-delete {
+  border: none;
+  background: transparent;
+  color: var(--danger);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+/* Planner / Calendar */
+
+.calendar {
+  background: #020617;
+  border-radius: var(--radius-sm);
+  padding: 10px 10px 12px;
+  border: 1px solid rgba(31, 41, 55, 0.9);
+  margin-bottom: 10px;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.calendar-header button {
+  border-radius: 999px;
+  border: 1px solid rgba(55, 65, 81, 0.9);
+  background: transparent;
+  color: var(--text);
+  padding: 2px 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+#month-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+  font-size: 0.75rem;
+}
+
+.day-name {
+  text-align: center;
+  padding: 4px 0;
+  color: var(--text-muted);
+}
+
+.day-cell,
+.day-empty {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.day-cell {
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  position: relative;
+  transition: background var(--transition-fast), border var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.day-cell:hover {
+  background: rgba(15, 23, 42, 0.9);
+  transform: translateY(-1px);
+}
+
+.day-cell.selected {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.day-cell.today {
+  border-color: rgba(148, 163, 184, 0.6);
+}
+
+.day-cell.has-tasks::after {
+  content: "";
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  background: var(--accent);
+}
+
+/* Tasks */
+
+.tasks-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 6px;
+}
+
+.tasks-header h3 {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+#selected-date-label {
+  color: var(--text-muted);
+}
+
+#task-form {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+#task-input {
+  flex: 1;
+  background: #020617;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(55, 65, 81, 0.9);
+  padding: 6px 8px;
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+#task-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent-soft);
+}
+
+#task-form button {
+  border-radius: 999px;
+  border: none;
+  padding: 6px 12px;
+  background: var(--accent-strong);
+  color: #f9fafb;
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+#task-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 180px;
+  overflow-y: auto;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 6px 8px;
+  margin-bottom: 4px;
+  border-radius: var(--radius-sm);
+  background: #020617;
+  border: 1px solid rgba(31, 41, 55, 0.9);
+  font-size: 0.88rem;
+}
+
+.task-main {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.task-checkbox {
+  cursor: pointer;
+}
+
+.task-text.completed {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.task-delete {
+  border: none;
+  background: transparent;
+  color: var(--danger);
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+/* Scrollbars */
+
+.journal-list-wrapper::-webkit-scrollbar,
+#task-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.journal-list-wrapper::-webkit-scrollbar-track,
+#task-list::-webkit-scrollbar-track {
+  background: #020617;
+}
+
+.journal-list-wrapper::-webkit-scrollbar-thumb,
+#task-list::-webkit-scrollbar-thumb {
+  background: #374151;
+  border-radius: 999px;
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .app {
+    padding: 10px;
+  }
+
+  .app-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .today {
+    text-align: left;
+  }
+}
